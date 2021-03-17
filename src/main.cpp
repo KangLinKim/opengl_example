@@ -1,3 +1,5 @@
+#include "context.h"
+
 #include <spdlog/spdlog.h>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -57,6 +59,13 @@ int main(int argc, const char** argv) {
     auto glVersion = glGetString(GL_VERSION);                                                   // 위의 함수로딩이 끝나면 드디어 OpenGL를 사용할 수 있게됨
     SPDLOG_INFO("OpenGL context version: {}", glVersion);
 
+    auto context = Context::Create();
+    if (!context) {
+        SPDLOG_ERROR("failed to create context");
+        glfwTerminate();
+        return -1;
+    }
+
     glfwSetFramebufferSizeCallback(window, OnFramebufferSizeChange);
     glfwSetKeyCallback(window, OnKeyEvent);
     OnFramebufferSizeChange(window, WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -65,10 +74,10 @@ int main(int argc, const char** argv) {
     SPDLOG_INFO("Start main loop");
     while (!glfwWindowShouldClose(window)) {                                // 윈도우창을 닫아야하는지 물어보는 문장        반복함수를 사용했음
         glfwPollEvents();                                                   // window와 관련된 이벤트들을 수집하는 함수     굳이 포함되는 이유는 위의 줄 하나만 있으면 너무 빨리 물어봐서 컴퓨터의 기능이 저하될 수 있다는듯
-        glClearColor(0.0f, 0.1f, 0.2f, 0.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
+        context->Render();
         glfwSwapBuffers(window);
     }
+    context.reset();
 
     glfwTerminate();
     return 0;                                                               //실행이 완료되면 마지막에 'code 0'라는 메시지도 출력되는데 0을 return하라는 명령어가 실행됐다는걸 알리는것임. 문제가 발생했을 때 error code """"출력되는걸 생각해보면 될듯

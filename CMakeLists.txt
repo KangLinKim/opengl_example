@@ -1,14 +1,22 @@
 cmake_minimum_required(VERSION 3.13)
 
-set(PROJECT_NAME first_opengl_example)                             #cmake_project_example이라는 프로젝트명을 PROJECT_NAME이라는 타겟명으로 대체시킴
+set(PROJECT_NAME opengl_example)                             #cmake_project_example이라는 프로젝트명을 PROJECT_NAME이라는 타겟명으로 대체시킴
 set(CMAKE_CXX_STANDARD 17)
 	
-set(WINDOW_NAME "First OpenGL Example")
+set(WINDOW_NAME " OpenGL Example")
 set(WINDOW_WIDTH 960)
 set(WINDOW_HEIGHT 540)
 
 project(${PROJECT_NAME})
-add_executable(${PROJECT_NAME} src/main.cpp)                        #scr/main.cpp가 PROJECT_NAME이란 타겟이 지정됐을때 실행되는 파일이됨
+add_executable(${PROJECT_NAME}
+  src/main.cpp
+  src/common.cpp src/common.h
+  src/shader.cpp src/shader.h
+  src/program.cpp src/program.h
+  src/context.cpp src/context.h
+  src/buffer.cpp src/buffer.h
+  src/vertex_layout.cpp src/vertex_layout.h
+  )                        #scr/main.cpp가 PROJECT_NAME이란 타겟이 지정됐을때 실행되는 파일이됨
 
 include(Dependency.cmake)
 
