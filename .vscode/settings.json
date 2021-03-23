@@ -4,5 +4,6 @@
     },
     "files.associations": {
         "vector": "cpp"
-    }
+    },
+    "cmake.configureOnOpen": false
 }
