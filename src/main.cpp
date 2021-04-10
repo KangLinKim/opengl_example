@@ -27,7 +27,7 @@ void OnKeyEvent(GLFWwindow* window,
 int main(int argc, const char** argv) {
     SPDLOG_INFO("Start program");
 
-    // glfw 라이브러리 초기화, 실패하면 에러 출력후 종료
+
     SPDLOG_INFO("Initialize glfw");
     if (!glfwInit()) {                                                      // glfwInit이라는 함수를 초기화. 초기화에 실패할경우 0나 false가 출력될텐데 !는 not이라는 의미이므로 if이하는 'glfwInit이 실패한다면'이라는 의미를 갖는다
         const char* description = nullptr;                                  // |
