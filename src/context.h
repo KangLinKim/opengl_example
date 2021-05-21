@@ -69,7 +69,17 @@ private:
     glm::vec3 m_cameraUp { glm::vec3(0.0f, 1.0f, 0.0f) };
 
     FramebufferUPtr m_framebuffer;
+
+    CubeTextureUPtr m_cubeTexture;
+    ProgramUPtr m_skyboxProgram;
+    ProgramUPtr m_envMapProgram;
         
+    TexturePtr m_grassTexture;
+    ProgramUPtr m_grassProgram;
+    std::vector<glm::vec3> m_grassPos;
+    BufferUPtr m_grassPosBuffer;
+    VertexLayoutUPtr m_grassInstance;
+
     int m_width {WINDOW_WIDTH};
     int m_height {WINDOW_HEIGHT};
 };
